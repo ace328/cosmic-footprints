@@ -1,0 +1,473 @@
+.mission-lab {
+  position: fixed;
+  right: clamp(14px, 2.5vw, 34px);
+  bottom: 22px;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.mission-lab-launch {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 226px;
+  padding: 12px 15px;
+  border: 1px solid rgba(155, 195, 255, 0.34);
+  border-radius: 4px;
+  background: rgba(5, 13, 26, 0.94);
+  color: #eff6ff;
+  box-shadow: 0 12px 38px rgba(0, 0, 0, 0.34);
+  text-align: left;
+  cursor: pointer;
+  pointer-events: auto;
+  backdrop-filter: blur(18px);
+  transition: border-color 180ms ease, transform 180ms ease, background 180ms ease;
+}
+
+.mission-lab-launch:hover {
+  transform: translateY(-3px);
+  border-color: rgba(170, 207, 255, 0.8);
+  background: rgba(15, 31, 54, 0.98);
+}
+
+.mission-lab-launch-icon {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid rgba(155, 195, 255, 0.35);
+  border-radius: 50%;
+  color: #a9ceff;
+  font-size: 17px;
+}
+
+.mission-lab-launch>span:nth-child(2) {
+  display: grid;
+  gap: 3px;
+  flex: 1;
+}
+
+.mission-lab-launch strong {
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+}
+
+.mission-lab-launch small {
+  color: #91a5c2;
+  font-size: 0.64rem;
+}
+
+.mission-lab-launch-arrow {
+  color: #a9ceff;
+}
+
+.mission-lab-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(1, 4, 10, 0.78);
+  backdrop-filter: blur(10px);
+  pointer-events: auto;
+}
+
+.mission-lab-dialog {
+  width: min(560px, 100%);
+  max-height: min(780px, calc(100svh - 40px));
+  overflow-y: auto;
+  padding: clamp(22px, 4vw, 36px);
+  border: 1px solid rgba(151, 190, 246, 0.3);
+  border-top: 2px solid #9fc7ff;
+  background: linear-gradient(145deg, #0b1729, #050b16 76%);
+  color: #eff5ff;
+  box-shadow: 0 28px 100px rgba(0, 0, 0, 0.56);
+  overscroll-behavior: contain;
+}
+
+.mission-lab-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.mission-lab-eyebrow,
+.mission-lab-result-kicker {
+  margin: 0 0 10px;
+  color: #9fc7ff;
+  font: 600 0.58rem/1.5 monospace;
+  letter-spacing: 0.15em;
+}
+
+.mission-lab-header h2 {
+  margin: 0;
+  font-size: clamp(1.8rem, 5vw, 2.7rem);
+  letter-spacing: -0.06em;
+}
+
+.mission-lab-header p:last-child {
+  margin: 8px 0 0;
+  color: #a5b4c9;
+  font-size: 0.83rem;
+  line-height: 1.6;
+}
+
+.mission-lab-close {
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+  border: 1px solid rgba(173, 199, 237, 0.25);
+  background: rgba(255, 255, 255, 0.04);
+  color: #eaf2ff;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.mission-lab-progress {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+  margin: 26px 0;
+}
+
+.mission-lab-progress span {
+  height: 3px;
+  background: rgba(155, 185, 226, 0.19);
+}
+
+.mission-lab-progress span.is-current {
+  background: #729bd2;
+}
+
+.mission-lab-progress span.is-complete {
+  background: #a9d8c2;
+}
+
+.mission-lab-question-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: #8299b9;
+  font: 0.57rem monospace;
+  letter-spacing: 0.11em;
+}
+
+.mission-lab-question {
+  margin: 15px 0 22px;
+  font-size: clamp(1.2rem, 3vw, 1.65rem);
+  line-height: 1.35;
+  letter-spacing: -0.035em;
+}
+
+.mission-lab-choices {
+  display: grid;
+  gap: 9px;
+}
+
+.mission-lab-choice {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid rgba(157, 187, 228, 0.18);
+  background: rgba(255, 255, 255, 0.035);
+  color: #dce7f7;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease;
+}
+
+.mission-lab-choice:not(:disabled):hover {
+  border-color: rgba(157, 195, 255, 0.62);
+  background: rgba(83, 125, 184, 0.12);
+}
+
+.mission-lab-choice>span {
+  display: grid;
+  width: 27px;
+  height: 27px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid rgba(157, 187, 228, 0.28);
+  color: #a9caff;
+  font: 0.68rem monospace;
+}
+
+.mission-lab-choice strong {
+  flex: 1;
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.mission-lab-choice em {
+  font-style: normal;
+  font-size: 1rem;
+}
+
+.mission-lab-choice.is-correct {
+  border-color: rgba(122, 196, 159, 0.65);
+  background: rgba(53, 124, 88, 0.13);
+}
+
+.mission-lab-choice.is-correct>span {
+  color: #a9e2c4;
+}
+
+.mission-lab-choice.is-incorrect {
+  border-color: rgba(228, 132, 132, 0.65);
+  background: rgba(145, 56, 56, 0.13);
+}
+
+.mission-lab-choice:disabled {
+  cursor: default;
+}
+
+.mission-lab-feedback {
+  margin-top: 17px;
+  padding: 16px;
+  border-left: 2px solid #8cb8f3;
+  background: rgba(93, 131, 183, 0.1);
+}
+
+.mission-lab-feedback>strong {
+  color: #c5dcff;
+  font-size: 0.83rem;
+}
+
+.mission-lab-feedback p {
+  margin: 8px 0 14px;
+  color: #b4c3d8;
+  font-size: 0.78rem;
+  line-height: 1.7;
+}
+
+.mission-lab-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 11px 15px;
+  border: 1px solid #c3dcff;
+  background: #dceaff;
+  color: #091426;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+}
+
+.mission-lab-result {
+  padding: 18px 0 8px;
+  text-align: center;
+}
+
+.mission-lab-result>strong {
+  display: block;
+  margin: 10px 0;
+  color: #dceaff;
+  font-size: 4rem;
+  letter-spacing: -0.07em;
+}
+
+.mission-lab-result>strong small {
+  color: #8ea7c8;
+  font-size: 1.3rem;
+}
+
+.mission-lab-result h3 {
+  margin: 0 0 8px;
+  font-size: 1.2rem;
+}
+
+.mission-lab-result p {
+  max-width: 380px;
+  margin: 0 auto 20px;
+  color: #a7b7ce;
+  font-size: 0.8rem;
+  line-height: 1.7;
+}
+
+.mission-lab-evidence {
+  display: grid;
+  gap: 7px;
+  margin-top: 25px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(168, 194, 231, 0.15);
+}
+
+.mission-lab-evidence span {
+  color: #7f95b4;
+  font: 0.55rem monospace;
+  letter-spacing: 0.14em;
+}
+
+.mission-lab-evidence a {
+  color: #b6d2fb;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  text-decoration-color: rgba(182, 210, 251, 0.4);
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 700px) {
+  .mission-lab {
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .mission-lab-launch {
+    min-width: 0;
+    padding: 10px 12px;
+    gap: 9px;
+  }
+
+  .mission-lab-launch-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .mission-lab-launch strong {
+    font-size: 0.58rem;
+  }
+
+  .mission-lab-launch small {
+    font-size: 0.57rem;
+  }
+
+  .mission-lab-dialog {
+    padding: 21px 17px;
+  }
+
+  .mission-lab-question-meta {
+    font-size: 0.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .mission-lab-launch,
+  .mission-lab-choice {
+    transition: none;
+  }
+}
+
+.mission-lab-data {
+  margin: -8px 0 23px;
+  padding: 15px;
+  border: 1px solid rgba(153, 191, 245, 0.22);
+  background: rgba(76, 111, 159, 0.09);
+}
+
+.mission-lab-data-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.mission-lab-data-heading>div>span {
+  color: #9fc7ff;
+  font: 0.54rem monospace;
+  letter-spacing: 0.12em;
+}
+
+.mission-lab-data-heading h3 {
+  margin: 7px 0 0;
+  color: #e9f2ff;
+  font-size: 0.95rem;
+  line-height: 1.35;
+}
+
+.mission-lab-data-heading>strong {
+  flex: 0 0 auto;
+  color: #d9eaff;
+  font-size: 1.55rem;
+  letter-spacing: -0.05em;
+}
+
+.mission-lab-data-heading>strong small {
+  color: #9bb4d6;
+  font-size: 0.65rem;
+}
+
+.mission-lab-data>p {
+  margin: 9px 0 13px;
+  color: #a8b9d1;
+  font-size: 0.72rem;
+  line-height: 1.6;
+}
+
+.mission-lab-data-rows {
+  display: grid;
+  gap: 10px;
+}
+
+.mission-lab-data-row>div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 5px;
+  color: #b9cbe2;
+  font-size: 0.67rem;
+}
+
+.mission-lab-data-row>div strong {
+  color: #e0edff;
+  font-variant-numeric: tabular-nums;
+}
+
+.mission-lab-data-track {
+  display: block;
+  height: 5px;
+  overflow: hidden;
+  background: rgba(173, 198, 235, 0.12);
+}
+
+.mission-lab-data-track i {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #648ec9, #a8d1ff);
+}
+
+.mission-lab-data>a {
+  display: inline-block;
+  margin-top: 13px;
+  color: #b8d6ff;
+  font: 0.57rem monospace;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+}
+
+.mission-lab-data>a:hover {
+  text-decoration: underline;
+}
+
+.mission-lab-data>small {
+  display: block;
+  margin-top: 8px;
+  color: #8498b4;
+  font-size: 0.62rem;
+  line-height: 1.5;
+}
+
+.mission-lab-simple {
+  margin: 0 0 22px;
+  padding: 15px 16px;
+  border-left: 2px solid #9ec5ff;
+  background: rgba(110, 151, 207, 0.1);
+}
+
+.mission-lab-simple>span {
+  color: #a9cbf8;
+  font: 0.55rem monospace;
+  letter-spacing: 0.13em;
+}
+
+.mission-lab-simple>p {
+  margin: 8px 0 0;
+  color: #d3e1f5;
+  font-size: 0.82rem;
+  line-height: 1.75;
+}
